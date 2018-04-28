@@ -1,10 +1,7 @@
-RewriteEngine On 
+RewriteEngine On
 RewriteCond %{ENV:REDIRECT_FINISH} !^$
 RewriteRule ^ - [L]
-RewriteCond %{REQUEST_FILENAME} ^.*\/routes\/.*$ [OR]
-RewriteCond %{REQUEST_FILENAME} ^.*\/view\/.*$ [OR]
-RewriteCond %{REQUEST_FILENAME} ^.*\/sass\/.*$
-RewriteRule ^(.*)$ index.php [L,QSA]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [L,QSA]
+RewriteCond %{REQUEST_FILENAME} ^.*\/static\/.*$
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)$ $1 [L,QSA]
+RewriteRule ^(.*)$ src/index.php [L,QSA]

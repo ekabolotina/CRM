@@ -1,0 +1,5 @@
+database:
+  hostname: 'localhost'
+  name:     'crm'
+  username: 'root'
+  password: 'root'
