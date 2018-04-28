@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^(.*)$ /index.php
+
+RewriteLog logs/rewrite.log
+RewriteLogLevel 9
