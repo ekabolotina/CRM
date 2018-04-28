@@ -1,1 +1,4 @@
 img/uploads
+vendor/
+routes/connect.php
+.idea/
