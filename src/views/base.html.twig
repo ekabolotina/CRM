@@ -13,19 +13,21 @@
   {% endblock head_styles %}
 </head>
 <body>
-  {% block header %}
-    {% include 'header.html.twig' %}
-  {% endblock header %}
+  <div id="bodyWrap">
+    {% block header %}
+      {% include 'header.html.twig' %}
+    {% endblock header %}
 
-  {% block content %}
-  {% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
-  {% include 'footer.html.twig' %}
+    {% include 'footer.html.twig' %}
 
-  {% block foot_scripts %}
-    <script src="/static/js/lib/jquery-3.1.1.min.js"></script>
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/js/global.js"></script>
-  {% endblock foot_scripts %}
+    {% block foot_scripts %}
+      <script src="/static/js/lib/jquery-3.1.1.min.js"></script>
+      <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+      <script src="/static/js/global.js"></script>
+    {% endblock foot_scripts %}
+  </div>
 </body>
 </html>
