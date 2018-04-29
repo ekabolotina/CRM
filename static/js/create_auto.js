@@ -48,7 +48,7 @@ $(document).ready(function(){
 		if($form.is("[loading]") || !srz) return;
 		$form.attr('loading', '');
 		$submit.addClass('disabled');
-		$.post('/auto/create/createModel', srz).fail(function(){
+		$.post('/car/addModel/add', srz).fail(function(){
 			showAlert($form, 'Произошла ошибка, перезагрузите страницу.');
 		}).done(function(data){
 			data = JSON.parse(data);
@@ -73,8 +73,7 @@ $(document).ready(function(){
 			}
 		}).always(function(data){
 			$form.removeAttr('loading');
-			$submit.removeClass('disabled');	
-			console.log(data);	
+			$submit.removeClass('disabled');
 		});
 	});
 

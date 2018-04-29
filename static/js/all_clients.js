@@ -6,7 +6,7 @@ function getUserInfoMore(id){
 		data = JSON.parse(data);
 		var imgs = '';
 		if(data.data.imgs) for(var i = 0; i < data.data.imgs.length; i++)
-			imgs += '<div class="clientPhoto"><img src="/img/uploads/'+ data.data.imgs[i].url +'"></div>'
+			imgs += '<div class="clientPhoto"><img src="/static/img/uploads/'+ data.data.imgs[i].url +'"></div>'
 		if(data.error == 200){
 			var msgHTML = 
 				'<b>ФИО: </b>'+ data.data.name + '<br>'+

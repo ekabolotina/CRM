@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Все заказы{% endblock page_title %}
+
+{% block head_styles %}
+  {{ parent() }}
+  <style>
+    #returnOrderModal .modal-content{
+      padding: 15px;
+    }
+  </style>
+{% endblock head_styles %}
+
+{% block foot_scripts %}
+  {{ parent() }}
+  <script src="/static/js/all_orders.js"></script>
+{% endblock foot_scripts %}
+
+{% block content %}
+  <h2>Все заказы проката &laquo;{{ user.name }}&raquo;</h2><br>
+
+  {% if orders|length %}
+    <table class="table" id="allOrdersList">
+      {% set counter = 0 %}
+      {% for order in orders %}
+        {% set counter = counter+1 %}
+        <tr data-order_id="{{ order.id }}">
+          <td>{{ counter }}</td>
+          <td>{{ order.client }}</td>
+          <td>{{ order.car }}</td>
+          <td>
+            <a href="/order/genRentContract?id={{ order.id }}&type=0" class="btn btn-primary" target="_blank">Договор (седан)</a>
+            <a href="/order/genRentContract?id={{ order.id }}&type=1" class="btn btn-primary" target="_blank">Договор (джип)</a>
+          </td>
+          <td>
+            {% if order.order_status %}
+              <button type="button" class="btn btn-warning returnOrderBtn" onclick="returnOrder(event, {{ order.id }})">Закрыть заказ</button>
+            {% else %}
+              Заказ закрыт.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <div class="panel panel-warning">
+      <div class="panel-heading">Сообщение</div>
+      <div class="panel-body">
+        Вы не оформили ни одного заказа. <a href="/order/new/" class="btn btn-success">Создать новый заказ</a>
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}

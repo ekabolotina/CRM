@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Все автомобили{% endblock page_title %}
+
+{% block content %}
+  <h2>Все автомобили</h2><br>
+
+  <div class="col-lg-8 col-md-8 col-sm-12">
+    {% if cars|length %}
+      <table class="table">
+        {% set counter = 0 %}
+        {% for car in cars %}
+          {% set counter = counter+1 %}
+          <tr>
+            <td>{{ counter }}</td>
+            <td>{{ car.car_make ~ ' ' ~ car.car_model }}</td>
+            <td>{{ car.car_number }}</td>
+            <td>{{ car.car_year }}</td>
+            <td>{{ car.car_color }}</td>
+            <td>{{ car.car_body }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </div>
+{% endblock content %}

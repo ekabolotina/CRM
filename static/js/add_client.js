@@ -33,7 +33,7 @@ function uploadFileSuccess(data){
 		$('#addClientFormAddPhotoGallery').append(
 			'<div class="uploadedImg">'+
 				'<a href="#" class="glyphicon glyphicon-remove" onclick="removeUploadedImg(event, '+ id[i] +');"></a>'+
-				'<img src="../img/uploads/'+ file[i] +'">'+
+				'<img src="/static/img/uploads/'+ file[i] +'">'+
 			'</div>'
 		);
 	$('#addClientForm input[name=client_photos]').val($('#addClientForm input[name=client_photos]').val() + 'i'.repeat(i));

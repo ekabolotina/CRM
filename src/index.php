@@ -2,7 +2,7 @@
 
 require_once 'load.php';
 
-$loader = new Twig_Loader_Filesystem('views');
+$loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array(
     'cache' => 'cache',
     'debug' => constant('DEV_MODE')
@@ -17,4 +17,4 @@ if(($query = $link->query("SELECT page FROM `url` WHERE url = '$URI'")) && $quer
     $url = $query->fetch_array(MYSQLI_ASSOC);
     require constant('CONTROLLERS_PATH') . $url['page'];
 }else
-    require constant('CONTROLLERS_PATH') . 'err_404.php';
+    require constant('CONTROLLERS_PATH') . 'error/err_404.php';
