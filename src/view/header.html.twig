@@ -27,6 +27,15 @@
         </ul>
       </li>
       <li><a href="/settings">Настройки</a></li>
+      {% if user.role == roles.admin %}
+        <li>
+          <a href="/admin" class="dropdown-toggle" data-toggle="dropdown">Администрирование <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin">Обзор</a></li>
+            <li><a href="/admin/company/add">Новая компания</a></li>
+          </ul>
+      <li>
+      {% endif %}
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#" id="logout">Выйти</a></li>

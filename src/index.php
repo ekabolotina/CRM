@@ -2,12 +2,18 @@
 
 require_once 'load.php';
 
-$loader = new Twig_Loader_Filesystem('view');
+$loader = new Twig_Loader_Filesystem(constant('VIEWS_DIR'));
 $twig = new Twig_Environment($loader, array(
     'cache' => 'cache',
     'debug' => constant('DEV_MODE')
 ));
+
 $twig->addGlobal('user', $_SESSION['user']);
+$twig->addGlobal('roles', [
+    'admin' => constant('ROLE_ADMIN'),
+    'company' => constant('ROLE_COMPANY'),
+    'branch' => constant('ROLE_BRANCH'),
+]);
 
 $queryPos = strrpos($_SERVER['REQUEST_URI'], $_SERVER['QUERY_STRING']);
 $URI = htmlspecialchars(trim((($queryPos) ? substr_replace($_SERVER['REQUEST_URI'], '', $queryPos) : $_SERVER['REQUEST_URI']), '/?'), ENT_QUOTES);

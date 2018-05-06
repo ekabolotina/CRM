@@ -1,10 +1,10 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
+use Mail\Mail;
 
 $status = [];
 
-if(!$_SESSION['user']){
+if (!$_SESSION['user']) {
     $status['error'] = 100;
     echo json_encode($status);
     die;
@@ -20,29 +20,24 @@ function processPostFields($array){
 $user = $_SESSION['user']['id'];
 $post_fields = processPostFields($_POST);
 
-$mail = new PHPMailer;
-$mail->setLanguage('ru');
-$mail->isSMTP();
-$mail->Host = 'smtp.yandex.ru';
-$mail->SMTPAuth = true;
-$mail->Username = 'dev@swat.one';
-$mail->Password = 'b2Ggj2sHvwv7vvf';
-$mail->SMTPSecure = 'ssl';
-$mail->Port = 465;
-$mail->setFrom('dev@swat.one', 'Компания SWAT');
-$mail->isHTML(true);
-$mail->CharSet = 'utf-8';
-$mail->Subject = 'YouchCRM – обратная связь.';
-$mail->addAddress('ivan.rusia@mail.ru');
-$mail->Body = '
-		<b>Пользователь:</b> '. $user .'<br>
-		<b>Описание проблемы: </b>'. $post_fields['question'] .'<br>
-		<b>Контакт: </b>'. $post_fields['contacts'] .'<br>
-		<b>Пришел со страницы: </b>'. $post_fields['referer'];
+$mail_body = '';
+try {
+    $mail_body = $twig->render( 'mail/feedback.html.twig', [
+        'user' => $user,
+        'question' => $post_fields['question'],
+        'contacts' => $post_fields['contacts'],
+        'referer' => $post_fields['referer']
+    ]);
+} catch (Exception $exception) {
+    echo $exception->getMessage();
+}
 
-if($mail->send())
+$mail = new Mail();
+
+if ($mail->send('ivan.rusia@mail.ru', $mail_body)) {
     $status['error'] = 200;
-else
+} else {
     $status['error'] = 201;
+}
 
 echo json_encode($status);
