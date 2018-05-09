@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><img src="/static/favicon.png" style="height: 20px; float: left; margin-right: 10px;">Youch CRM</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Заказы <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          {% if user.role != roles.admin %}<li><a href="/order/new">Новый</a></li>{% endif %}
+          <li><a href="/order/all">Все заказы</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Автомобили <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          {% if user.role != roles.admin %}<li><a href="/auto/add">Новый</a></li>{% endif %}
+          <li><a href="/auto/all">Все автомобили</a></li>
+          <li><a href="/car/addModel">Добавить модель</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Клиенты <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          {% if user.role != roles.admin %}<li><a href="/clients/add">Новый</a></li>{% endif %}
+          <li><a href="/clients/all">Все клиенты</a></li>
+        </ul>
+      </li>
+      <li><a href="/settings">Настройки</a></li>
+      {% if user.role == roles.admin %}
+        <li>
+          <a href="/admin" class="dropdown-toggle" data-toggle="dropdown">Администрирование <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin">Обзор</a></li>
+            <li><a href="/admin/company/add">Новая компания</a></li>
+          </ul>
+        <li>
+      {% endif %}
+      {% if user.role == roles.company %}
+        <li>
+          <a href="/admin" class="dropdown-toggle" data-toggle="dropdown">Администрирование <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin">Обзор</a></li>
+            <li><a href="/admin/branch/add">Новый филиал</a></li>
+          </ul>
+        <li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" id="logout">Выйти</a></li>
+    </ul>
+  </div>
+</nav>

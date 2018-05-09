@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}О филиале "{{ branch.name }}"{% endblock page_title %}
+
+{% block content %}
+
+  <h2>Филиал &laquo;{{ branch.name }}&raquo; <a href="/admin" class="btn btn-info">Все филиалы</a></h2>
+  <hr>
+
+  <h3>Заказы, оформленные в этом филиале</h3><br>
+
+  {% if orders|length %}
+    <table class="table" id="allOrdersList">
+      {% set counter = 0 %}
+      {% for order in orders %}
+        {% set counter = counter+1 %}
+        <tr data-order_id="{{ order.id }}">
+          <td>{{ counter }}</td>
+          <td>{{ order.client }}</td>
+          <td>{{ order.car }}</td>
+          <td>
+            <a href="/order/genRentContract?id={{ order.id }}&type=0" class="btn btn-primary" target="_blank">Договор (седан)</a>
+            <a href="/order/genRentContract?id={{ order.id }}&type=1" class="btn btn-primary" target="_blank">Договор (джип)</a>
+          </td>
+          <td>
+            {% if order.order_status %}
+              <span style="color: green;">Заказ открыт.</span>
+            {% else %}
+              Заказ закрыт.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <div class="panel panel-warning">
+      <div class="panel-heading">Сообщение</div>
+      <div class="panel-body">
+        В этом филиале не был оформлен ни один заказ.
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock content %}

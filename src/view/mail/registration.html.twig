@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    p {
+      text-align: justify;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <table style="width: 500px; max-width: 100%; margin: 0 auto;">
+    <tr>
+      <td>
+        <p>Здравствуйте. Ваш e-mail был указан в качестве контактного адреса при регистрации
+          компании или филиала в <a href="http://crm.youch.ru" target="_blank">YouchCRM</a>.</p>
+        <p>Для входа в систему используйте следующие данные:</p>
+        <ul>
+          <li>Адрес для входа в CRM-систему:
+            <b><a href="http://crm.youch.ru/login" target="_blank">http://crm.youch.ru/login</a></b>
+          </li>
+          <li>Логин: <b>{{ login }}</b></li>
+          <li>Пароль: <b>{{ password }}.</b></li>
+        </ul>
+        <p>После первого входа рекомендуем сменить пароль на новый.</p>
+        <p>Не отвечайте на это письмо, оно было отправлено автоматически. Если вы получили это
+          письмо по ошибке, а также при возникновении неполадок в работе системы, пожалуйста,
+          сообщите нам по почте <a href="mailto:ivan.rusia@mail.ru">ivan.rusia@mail.ru</a>.</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+  <section id="loginForm">
+    <h1>Добро пожаловать</h1>
+    <h3>Авторизуйтесь для продолжения</h3>
+
+    <form class="ajaxForm" action="/login_user" callback-after="loginUserCallbackAfter">
+      <input type="text" name="login" placeholder="Логин">
+      <input type="password" name="password" placeholder="Пароль">
+      <input type="submit" value="Войти" class="submit">
+    </form>
+  </section>
+{% endblock content %}

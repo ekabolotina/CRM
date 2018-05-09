@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}"{{ user.name }}" - Панель администратора компании{% endblock page_title %}
+
+{% block content %}
+
+  <h2>Панель администратора компании</h2>
+  <hr>
+
+  <h3>Филиалы вашей компании{% if branches|length %} <a href="/admin/branch/add" class="btn btn-success">Новый филиал</a>{% endif %}</h3>
+
+  {% if branches|length %}
+    {% set count = 0 %}
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-striped">
+          <thead>
+          <th></th>
+          <th>Наименование филиала</th>
+          <th>Количество заказов</th>
+          <th></th>
+          </thead>
+          <tbody>
+          {% for branch in branches %}
+            {% set count = count+1 %}
+            <tr>
+              <td>{{ count }}</td>
+              <td>{{ branch.name }}</td>
+              <td>{{ branch.orders_count }}</td>
+              <td><a href="/admin/branch/?id={{ branch.id }}">Подробнее</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% else %}
+      <div class="panel panel-warning">
+        <div class="panel-heading">Сообщение</div>
+        <div class="panel-body">
+          В вашей компании нет ни одного филиала. <a href="/admin/branch/add" class="btn btn-success">Добавить филиал</a>
+        </div>
+      </div>
+  {% endif %}
+
+{% endblock content %}

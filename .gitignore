@@ -1,1 +1,6 @@
-img/uploads
+static/img/uploads/
+!static/img/uploads/.gitkeep
+vendor/
+routes/connect.php
+.idea/
+src/cache/
