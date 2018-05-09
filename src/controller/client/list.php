@@ -5,7 +5,8 @@ if (!$_SESSION['user']) {
     die;
 }
 
-$user = $_SESSION['user']['id'];
+$user_id = $_SESSION['user']['id'];
+$user_role = $_SESSION['user']['role'];
 
 if (
     ($query = $link->query("
@@ -18,7 +19,13 @@ if (
 				cl.owner AS `client_owner`
 			FROM 
 				`clients` AS cl
-			WHERE cl.owner = $user			
+			LEFT JOIN `users` AS u ON cl.owner = u.id
+			WHERE 
+			  cl.owner = $user_id OR
+			  $user_id IN (SELECT id FROM users WHERE role = ". constant('ROLE_BRANCH') ." AND head = u.head) OR
+			  $user_role = ". constant('ROLE_COMPANY') ." AND u.head = $user_id OR
+			  cl.blacked = 1 OR	
+			  $user_role = ". constant('ROLE_ADMIN') ."
 			ORDER BY 
 				id DESC
 		")) &&

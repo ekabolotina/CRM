@@ -34,7 +34,11 @@
           </td>
           <td>
             {% if order.order_status %}
-              <button type="button" class="btn btn-warning returnOrderBtn" onclick="returnOrder(event, {{ order.id }})">Закрыть заказ</button>
+              {% if user.role == roles.branch %}
+                <button type="button" class="btn btn-warning returnOrderBtn" onclick="returnOrder(event, {{ order.id }})">Закрыть заказ</button>
+              {% else %}
+                <span style="color: green;">Заказ открыт.</span>
+              {% endif %}
             {% else %}
               Заказ закрыт.
             {% endif %}

@@ -10,25 +10,36 @@ if (!$_SESSION['user']) {
 
 $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
 
+$user_id = $_SESSION['user']['id'];
+$user_role = $_SESSION['user']['role'];
+
 if (
     ($query = $link->query("
 		SELECT 
-			`id`,
-			CONCAT(last_name, ' ', first_name, ' ', middle_name) AS `name`,
-			`birthday`,
-			CONCAT(passport_prefix, passport_number, ', выдан ', passport_emitted, ' ', passport_date) AS `passport`,
-			CONCAT(license_prefix, license_number, ', выдано ', license_emitted, ' ', license_date) AS `license`,
-			`address_residence`, 
-			`address_real`, 
-			`phone_home`, 
-			`phone_work`, 
-			`phone_mobile`, 
-			`blacked`, 
-			`rate` 
+			cl.id AS `id`,
+			CONCAT(cl.last_name, ' ', cl.first_name, ' ', cl.middle_name) AS `name`,
+			cl.birthday AS `birthday`,
+			CONCAT(cl.passport_prefix, cl.passport_number, ', выдан ', cl.passport_emitted, ' ', cl.passport_date) AS `passport`,
+			CONCAT(cl.license_prefix, cl.license_number, ', выдано ', cl.license_emitted, ' ', cl.license_date) AS `license`,
+			cl.address_residence AS `address_residence`, 
+			cl.address_real AS `address_real`, 
+			cl.phone_home AS `phone_home`, 
+			cl.phone_work AS `phone_work`, 
+			cl.phone_mobile AS `phone_mobile`, 
+			cl.blacked AS `blacked`, 
+			cl.rate AS `rate` 
 		FROM 
-			`clients` 
+			`clients` AS cl
+		LEFT JOIN `users` as u ON cl.owner = u.id
 		WHERE 
-			id = $id
+			cl.id = $id AND
+			(
+			    cl.owner = $user_id OR
+			    $user_id IN (SELECT id FROM users WHERE role = ". constant('ROLE_BRANCH') ." AND head = u.head) OR
+                $user_role = " . constant('ROLE_COMPANY') . " AND u.head = $user_id OR
+                cl.blacked = 1 OR
+                $user_role = ". constant('ROLE_ADMIN') ."
+		    )
 	")) &&
     $query->num_rows
 ) {

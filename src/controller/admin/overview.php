@@ -10,6 +10,8 @@ if (!in_array($_SESSION['user']['role'], [constant('ROLE_ADMIN'), constant('ROLE
     die;
 }
 
+$user_id = $_SESSION['user']['id'];
+
 if ($_SESSION['user']['role'] == constant('ROLE_ADMIN')) {
     if (
         ($query = $link->query("
@@ -44,7 +46,9 @@ if ($_SESSION['user']['role'] == constant('ROLE_COMPANY')) {
             (SELECT count(0) FROM `orders` WHERE `owner` = u.id) as `orders_count`
         FROM 
             `users` AS u
-        WHERE u.role = " . constant('ROLE_BRANCH') . "
+        WHERE 
+          u.role = " . constant('ROLE_BRANCH') . " AND
+          u.head = $user_id
     ")) &&
         $query->num_rows
     ) {
