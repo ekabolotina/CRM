@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Новая компания{% endblock page_title %}
+
+{% block foot_scripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="/static/js/add_company.js"></script>
+{% endblock foot_scripts %}
+
+{% block content %}
+  <h2>Новая компания <a href="/admin" class="btn btn-info">Все компании</a></h2>
+
+  <form class="ajaxForm form-horizontal" action="/admin/api/company/add" role="form" style="margin-top: 30px;" id="addCompanyForm" callback-after="addCompanyFormCallbackAfter">
+    <div class="form-group">
+      <label for="company_name" class="col-sm-2 control-label">Название компании</label>
+      <div class="col-sm-5">
+        <input name="company_name" type="text" class="form-control" require>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="company_email" class="col-sm-2 control-label">E-mail</label>
+      <div class="col-sm-5">
+        <input name="company_email" type="email" class="form-control" placeholder="example@mail.ru" require>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-5 col-sm-push-2">
+        <input type="submit" class="btn btn-primary" value="Создать компанию">
+      </div>
+    </div>
+  </form>
+{% endblock content %}

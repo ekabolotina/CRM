@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}Панель администратора{% endblock page_title %}
+
 {% block content %}
 
   <h2>Панель администратора</h2>
   <hr>
 
-  <h3>Компании <a href="/admin/company/add" class="btn btn-info">Добавить новую</a></h3>
+  <h3>Компании <a href="/admin/company/add" class="btn btn-success">Добавить новую</a></h3>
 
   {% if companies|length %}
     {% set count = 0 %}
@@ -36,4 +38,3 @@
   {% endif %}
 
 {% endblock content %}
-

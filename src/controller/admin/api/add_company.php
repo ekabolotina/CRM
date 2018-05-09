@@ -4,44 +4,28 @@ use Mail\Mail;
 
 $status = [];
 
-if (
-    !$_SESSION['user'] ||
-    !in_array($_SESSION['user']['role'], [constant('ROLE_ADMIN'), constant('ROLE_COMPANY')])
-) {
+if (!$_SESSION['user'] || $_SESSION['user']['role'] != constant('ROLE_ADMIN')) {
     $status['error'] = 100;
     echo json_encode($status);
     die;
 }
 
-$company_id = htmlspecialchars($_POST['company_id'], ENT_QUOTES);
-$branch_name = htmlspecialchars($_POST['branch_name'], ENT_QUOTES);
-$branch_email = htmlspecialchars($_POST['branch_email'], ENT_QUOTES);
+$company_name = htmlspecialchars($_POST['company_name'], ENT_QUOTES);
+$company_email = htmlspecialchars($_POST['company_email'], ENT_QUOTES);
 
 $user_id = $_SESSION['user']['id'];
-$user_role = $_SESSION['user']['role'];
 
 $password = mt_rand(1000000, 9999999);
 
-if (
-    $branch_name &&
-    $branch_email &&
-    (
-        ($user_role == constant('ROLE_ADMIN') && $company_id && ctype_digit($company_id)) ||
-        $user_role == constant('ROLE_COMPANY')
-    )
-) {
+if ($company_name && $company_email) {
     if (
-        ($query = $link->query("SELECT `id` FROM `users` WHERE email = '$branch_email'")) &&
+        ($query = $link->query("SELECT `id` FROM `users` WHERE email = '$company_email'")) &&
         $query->num_rows
     ) {
         $status['error'] = 203;
     } else {
-        if ($user_role == constant('ROLE_COMPANY')) {
-            $company_id = $user_id;
-        }
-
         if (
-            $link->query("
+        $link->query("
                 INSERT INTO `users` (
                   `name`, 
                   `login`, 
@@ -53,19 +37,19 @@ if (
                   `head`
                 ) 
                 VALUES (
-                  '$branch_name',
-                  '$branch_email',
+                  '$company_name',
+                  '$company_email',
                   SHA1('$password'),
                   5,
                   '',
-                  '$branch_email',
-                  ". constant('ROLE_BRANCH') .",
-                  $company_id
+                  '$company_email',
+                  ". constant('ROLE_COMPANY') .",
+                  $user_id
                 )
             ")
         ) {
             $status['error'] = 200;
-            $status['branchName'] = $branch_name;
+            $status['companyId'] = $link->insert_id;
         } else {
             $status['error'] = 202;
         }
@@ -78,7 +62,7 @@ if ($status['error'] == 200) {
     $mail_body = '';
     try {
         $mail_body = $twig->render( 'mail/registration.html.twig', [
-            'login' => $branch_email,
+            'login' => $company_email,
             'password' => $password
         ]);
     } catch (Exception $exception) {
@@ -86,7 +70,7 @@ if ($status['error'] == 200) {
     }
 
     $mail = new Mail();
-    $mail->send($branch_email, $mail_body);
+    $mail->send($company_email, $mail_body);
 }
 
 echo json_encode($status);

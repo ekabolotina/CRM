@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}О компании "{{ company.name }}"{% endblock page_title %}
+
 {% block foot_scripts %}
   {{ parent() }}
   <script type="text/javascript" src="/static/js/add_branch.js"></script>
@@ -14,10 +16,10 @@
     <div class="col-lg-6">
       <h3>Об этой компании</h3>
       <ul>
-        <li><b>Филиалов:</b> {{ branches|length }}</li>
-        <li><b>Клиентов</b>: {{ company_info.clients_count }}</li>
-        <li><b>Автомобилей</b>: {{ company_info.cars_count }}</li>
-        <li><b>Заказов</b>: {{ company_info.orders_count }}</li>
+        <li><b>Филиалов:</b> <span id="companyInfoBranchesCount">{{ branches|length }}</span></li>
+        <li><b>Клиентов</b>: {% if company_info.clients_count %}{{ company_info.clients_count }}{% else %}0{% endif %}</li>
+        <li><b>Автомобилей</b>: {% if company_info.cars_count %}{{ company_info.cars_count }}{% else %}0{% endif %}</li>
+        <li><b>Заказов</b>: {% if company_info.orders_count %}{{ company_info.orders_count }}{% else %}0{% endif %}</li>
       </ul>
       <hr>
 
@@ -45,24 +47,21 @@
       <hr>
     </div>
     <div class="col-lg-6">
-      {% if branches|length %}
-        {% set count = 0 %}
-        <h3>Существующие филиалы</h3><br>
-        <table class="table table-striped">
-          <thead>
-
-          </thead>
-          <tbody id="branchesList">
-          {% for branch in branches %}
-            {% set count = count+1 %}
-            <tr>
-              <td>{{ count }}</td>
-              <td>{{ branch.name }}</td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-      {% endif %}
+      <h3>Существующие филиалы</h3><br>
+      <table class="table table-striped">
+        <tbody id="branchesList">
+          {% if branches|length %}
+          {% set count = 0 %}
+            {% for branch in branches %}
+              {% set count = count+1 %}
+              <tr>
+                <td>{{ count }}</td>
+                <td>{{ branch.name }}</td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
     </div>
   </div>
 

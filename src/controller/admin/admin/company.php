@@ -71,7 +71,7 @@ if (
 
 
 try {
-    echo $twig->render( 'admin/company.html.twig', [
+    echo $twig->render( 'admin/admin/company.html.twig', [
         'company' => $company,
         'branches' => $branches,
         'company_info' => $company_info
