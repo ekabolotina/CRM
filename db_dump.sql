@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.10
--- https://www.phpmyadmin.net
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 28 2018 г., 13:29
--- Версия сервера: 5.6.39-83.1
--- Версия PHP: 5.3.28
+-- Время создания: Май 09 2018 г., 16:37
+-- Версия сервера: 5.7.22-0ubuntu0.16.04.1
+-- Версия PHP: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `u0290194_crm`
+-- База данных: `crm`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Структура таблицы `cars`
 --
 
-CREATE TABLE IF NOT EXISTS `cars` (
+CREATE TABLE `cars` (
   `id` int(11) NOT NULL,
   `car_make` int(11) NOT NULL,
   `car_model` int(11) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `user` int(11) NOT NULL,
   `car_body` varchar(500) NOT NULL,
   `car_color` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `cars`
@@ -206,7 +206,10 @@ INSERT INTO `cars` (`id`, `car_make`, `car_model`, `year`, `car_number`, `user`,
 (176, 99, 2282, 2006, 'В379НТ125', 9, 'JTJHK31U502004742', 'СВЕТЛО-ГОЛУБОЙ'),
 (177, 127, 2148, 2014, 'Е485НЕ125', 9, 'NT32503836', 'ЧЕРНЫЙ'),
 (178, 176, 2170, 2012, 'У891МХ125', 9, 'ZVW305413538', 'СЕРЫЙ'),
-(179, 99, 2279, 2009, 'А828СК125', 5, 'JTJBM7FXXA5002768', 'Белый');
+(179, 99, 2279, 2009, 'А828СК125', 5, 'JTJBM7FXXA5002768', 'Белый'),
+(180, 176, 1841, 1111, 'п555пп444', 8, 'квамвам', 'смсм'),
+(181, 215, 22276, 2018, 'л111лл123', 8, '1111', 'Black'),
+(182, 176, 1793, 2020, 'а555аа555', 26, 'ССС', 'Серый');
 
 -- --------------------------------------------------------
 
@@ -214,7 +217,7 @@ INSERT INTO `cars` (`id`, `car_make`, `car_model`, `year`, `car_number`, `user`,
 -- Структура таблицы `car_makes`
 --
 
-CREATE TABLE IF NOT EXISTS `car_makes` (
+CREATE TABLE `car_makes` (
   `id` int(11) NOT NULL,
   `name` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -445,11 +448,11 @@ INSERT INTO `car_makes` (`id`, `name`) VALUES
 -- Структура таблицы `car_models`
 --
 
-CREATE TABLE IF NOT EXISTS `car_models` (
+CREATE TABLE `car_models` (
   `id` int(11) NOT NULL,
   `car_make` int(11) NOT NULL,
   `name` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22276 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `car_models`
@@ -1259,7 +1262,7 @@ INSERT INTO `car_models` (`id`, `car_make`, `name`) VALUES
 (802, 76, 'Shuttle'),
 (803, 76, 'Stepwgn'),
 (804, 76, 'Stream'),
-(805, 76, 'That''S'),
+(805, 76, 'That\'S'),
 (806, 76, 'Today'),
 (807, 76, 'Torneo'),
 (808, 76, 'Vamos'),
@@ -1393,7 +1396,7 @@ INSERT INTO `car_models` (`id`, `car_make`, `name`) VALUES
 (936, 92, 'Capital'),
 (937, 92, 'Carens'),
 (938, 92, 'Carnival'),
-(939, 92, 'Cee''d'),
+(939, 92, 'Cee\'d'),
 (940, 92, 'Cerato'),
 (941, 92, 'Clarus'),
 (942, 92, 'Concord'),
@@ -2573,7 +2576,7 @@ INSERT INTO `car_models` (`id`, `car_make`, `name`) VALUES
 (2122, 127, 'Pulsar'),
 (2123, 127, 'Qashqai'),
 (2124, 127, 'Quest'),
-(2125, 127, 'R''nessa'),
+(2125, 127, 'R\'nessa'),
 (2126, 127, 'Rasheen'),
 (2127, 127, 'Rogue'),
 (2128, 127, 'Roox'),
@@ -2735,7 +2738,8 @@ INSERT INTO `car_models` (`id`, `car_make`, `name`) VALUES
 (2285, 99, 'RX 330'),
 (2286, 99, 'RX 450H'),
 (22274, 76, 'Fit Hybrid'),
-(22275, 176, 'Prius Alpha');
+(22275, 176, 'Prius Alpha'),
+(22276, 215, 'Матрешка');
 
 -- --------------------------------------------------------
 
@@ -2743,7 +2747,7 @@ INSERT INTO `car_models` (`id`, `car_make`, `name`) VALUES
 -- Структура таблицы `clients`
 --
 
-CREATE TABLE IF NOT EXISTS `clients` (
+CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `first_name` varchar(500) NOT NULL,
   `last_name` varchar(500) NOT NULL,
@@ -2765,7 +2769,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `blacked` int(1) NOT NULL DEFAULT '0',
   `rate` double NOT NULL DEFAULT '0',
   `owner` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=269 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `clients`
@@ -2880,7 +2884,7 @@ INSERT INTO `clients` (`id`, `first_name`, `last_name`, `middle_name`, `birthday
 (121, 'АЛЕКСЕЙ', 'ПАЛЬЧИНСКИЙ', 'СЕРГЕЕВИЧ', '24.10.1979', '0503', '975234', 'ПАРТИЗАНСКИМ РОВД ПРИМОРСКОГО КРАЯ', '27.10.2005', 'ПРИМОРСКИЙ КРАЙ С. НОВИЦКОЕ УЛ. МАТРОСОВА Д. 53 ', 'ГОР. НАХОДКА УЛ. МОЛОДЕЖНАЯ Д.12 КВ.22', '', '', '89140700335', '2525', '060352', 'ГИБДД 2503', '04.03.2016.', 0, 5, 8),
 (122, 'Дмитрий', 'Сущенко', 'Евгеньевич', '17.05.1973', '0501', '306720', 'Дальнегорским ГОВД Приморского края', '19.03.2001', 'г.Дельнегорск, пр-кт 50 лет октября, д.3, кв.32', 'г.Владивостоу, Океанский пр-кт, д.110, кв.58', '', '', '89089920796', '2526', '280598', 'ГИБДД 2501', '29.04.2016.', 0, 5, 9),
 (123, 'Сергей', 'Светов', 'Владимирович', '24.09.1982', '6402', '398750', 'Тимовским РОВД Сахалинской обл.', '19.08.2003', 'г. Южно-Сахалинск, ул. Чехова, дом 164, кв. 23', 'г. Артём, гостиница Монро', '', '', '8-984-139-28-80', '65УМ', '291979', 'ГИБДД МВД-УВД', '11.09.2010.', 0, 5, 5),
-(124, 'Артем', 'Матвеев', 'Валерьевич', '25.05.1986', '6705', '606982', '1 городским отделом милиции увд г.Нижневартовка Ханты-Мансийского Автономного округа-Югры Тюменской Области', '02.06.2006', 'г.Анапа , ул. Ленина д 194.кв.251.', '', '', '', '8 (984) -154-30-03', '2332', '844458', 'гибдд 23101', '20.09.2017.', 0, 0, 8),
+(124, 'Артем', 'Матвеев', 'Валерьевич', '25.05.1986', '6705', '606982', '1 городским отделом милиции увд г.Нижневартовка Ханты-Мансийского Автономного округа-Югры Тюменской Области', '02.06.2006', 'г.Анапа , ул. Ленина д 194.кв.251.', '', '', '', '8 (984) -154-30-03', '2332', '844458', 'гибдд 23101', '20.09.2017.', 0, 5, 8),
 (125, 'ВЛАДИМИР', 'ТЕРЕШКИН', 'КАНОВИЧ', '29.12.1991', '9811', '392909', 'ТП УФМС РОССИИ ПО РЕСПУБЛИКЕ САХА (ЯКУТИЯ)', '14.04.2012', 'РЕСП. САХА (ЯКУТИЯ) С. УЛАХАН-АН УЛ. МОЛОДЕЖНАЯ Д.33', 'ГОР. ФОКИНО УЛ. УСАТОВА  Д. 13 КВ. 90', '', '', '89140839797', '14ОС', '753132', 'ГИБДД - УВД ХАНГАЛАССКОГО', '11.02.2010.', 0, 5, 8),
 (126, 'АНТОН', 'КУМАНЁВ', 'ВИКТОРОВИЧ', '11.01.1985', '0504', '033252', 'ШКОТОВСКИМ ОТДЕЛЕНИЕМ МИЛИЦИИ ШКОТОВСКОГО РОВД ПРИМОРСКОГО КРАЯ', '03.05.2005', 'ПРИМОРСКИЙ КРАЙ ПГТ.ШКОТОВО УЛ. ЗАЛЬПЕ Д. 81', '', '', '', '89656791847', '2511', '242221', 'ГИБДД 2501', '06.07.2012.', 0, 5, 8),
 (127, 'ВЕРОНИКА', 'ЯРОШЕНКО', 'ЮРЬЕВНА', '17.04.1969', '0514', '166461', 'ТП №1 ОУФМС РОССИИ ПО ПРИМОРСКОМУ КРАЮ В СОВЕТСКОМ РАЙОНЕ ГОР. ВЛАДИВОСТОКА', '25.04.2014', 'ГОР. ВЛАДИВОСТОК ПГТ. ТРУДОВОЕ УЛ. ПУТЯТИНСКАЯ Д. 33', '', '', '', '89240046700', '25ОН', '625741', 'ГИБДД МВД-УВД ВЛАДИВОСТОК', '10.04.2009.', 0, 0, 8),
@@ -2919,7 +2923,7 @@ INSERT INTO `clients` (`id`, `first_name`, `last_name`, `middle_name`, `birthday
 (160, '1', '1', '1', '12.01.2018', '1111', '111111', '1', '12.01.2018', '1', '1', '1', '', '11111111111', '1', '111111', '1', '12.01.2018.', 0, 0, 4),
 (161, 'Андрей', 'Николаевия', 'Савёлов', '21.04.1990', '1010', '859668', 'УФМС России по Амурской области в Тамбовском районе', '19.08.2010', 'Владивосток, 2-я поселковая 34, кв. 126', 'Владивосток, Вострецова 12, кв. 108', '', '', '89940092170', '2533', '635858', 'ГИББ Амурской области', '01.12.2015.', 0, 0, 4),
 (162, 'Смирнов', 'Иван', 'Иваныч', '21.08.1986', '1512', '569548', 'УФМС России по Приморскому краю', '15.01.2001', 'Приморский край, гор. Владивосток, ул. Некрасовская 90, кв. 5', 'Приморский край, гор. Владивосток, ул. Крылова 7, кв. 89', '', '', '+79147895623', '4578', '569854', 'ГИБДД МВД-УВД Владивосток', '08.03.2006.', 0, 0, 4),
-(163, 'Тест', 'Тестовников', 'Тестовович', '01.01.1981', '0000', '000000', 'УФМС РФ по Приморскому краю в г. Влдивостоке', '01.01.1991', 'г. Мурманск, ул. Батарейная, д. 4, кв. 4', 'г. Владивосток, ул. Алеутская, д. 45, кв. 5', '+71231231235', '+71231231236', '+71231231234', '0001', '000001', 'МОРАС ГИБДД по Приморскому краю', '01.01.2001.', 0, 4.75, 8),
+(163, 'Тест', 'Тестовников', 'Тестововичxxx', '01.01.1981', '0000', '000000', 'УФМС РФ по Приморскому краю в г. Влдивостоке', '01.01.1991', 'г. Мурманск, ул. Батарейная, д. 4, кв. 4', 'г. Владивосток, ул. Алеутская, д. 45, кв. 5', '+71231231235', '+71231231236', '+71231231234', '0001', '000001', 'МОРАС ГИБДД по Приморскому краю', '02.01.2001', 0, 4.75, 8),
 (164, 'Сергей', 'Спицин', 'Сергеевич', '21.04.1990', '1515', '200400', 'ГИБДД Владивосток', '12.12.2010', 'Владивосток, Вострецова 8, кв 6', 'Владивосток, Вострецова 10, кв 10', '', '', '+79147009000', '4545', '458599', 'ГИБДД МВД-УВД Владивосток', '02.02.2001.', 0, 0, 4),
 (165, 'Глеб', 'Вербитский', 'Александрович', '08.09.1986', '1010', '520260', 'УФМС России по Приморскому краю', '10.03.2004', 'Владивосток, Нейбута 45, кв. 17', 'Владивосток, 100-летия Владивостоку 78, кв. 26', '', '', '+79248520045', '1458', '789654', 'ГИБДД МВД-УВД Владивосток', '09.04.2000.', 0, 0, 4),
 (166, 'Оксана', 'Генц', 'Викторовна', '31.12.1986', '0509', '617034', 'Отделением УФМС России по Приморскому краю в Надежденском муниципальном районе', '29.07.2009', 'Приморский край, пос.Новый, улю Ленина, д.3, кв. 39', 'Приморский край, пос.Новый, улю Ленина, д.3, кв. 39', '89243205052', '89243205052', '89243205052', '2518', '721777', 'ГИБДД 2501', '25.07.2014.', 0, 5, 9),
@@ -3025,7 +3029,8 @@ INSERT INTO `clients` (`id`, `first_name`, `last_name`, `middle_name`, `birthday
 (265, 'Алексей', 'Косьяненко', 'Александрович', '03.12.1994', '0514', '250193', 'Отделом УФМС России по Приморскому краю в Ленинском районе г. Владивостока', '21.01.2015', 'г. Владивосток, ул. Невельского, д. 1, кв. 6', '', '', '', '89662908790', '2521', '981887', 'ГИБДД 2501', '21.04.2015.', 0, 5, 9),
 (266, 'НИКОЛАЙ', 'ЗАМЫЛИН', 'ВАСИЛЬЕВИЧ', '02.01.1974', '5003', '584589', 'ОВД ПЕРВОМАЙСКОГО РАЙОНА ГОРОДА НОВОСИБИРСКА', '15.11.2002', 'Г. НОВОСИБИРС УЛ. ДЕСАНТНАЯ КВ. 11', 'ГОСТ. РУСЬ', '', '', '89137100099', '54НВ', '204455', 'ГИБДД 0108', '27.11.2009.', 0, 5, 9),
 (267, 'ЕВГЕНИЙ', 'МЕЛЬНИКОВ', 'АЛЕКСАНДРОВИЧ', '20.06.1988', '0508', '511274', 'ОТДЕЛОМ УФМС РОССИИ ПО ПРИМОРСКОМУ КРАЮ В ЛЕНИНСКОМ РАЙОНЕ ГОР. ВЛАДИВОСТОКА', '16.07.2008', 'Г. ВЛАДИВОСТОК УЛ. ВАТУТИНА ДОМ 14 КВ. 32', '', '', '', '89841917789', '2820', '080843', 'ГИБДД 2501', '06.01.2015.', 1, 1, 9),
-(268, 'ЕВГЕНИЙ', 'СУМЕРИН', 'СЕРГЕЕВИЧ', '19.09.1992', '0511', '946043', 'ОТДЕЛОМ УФМС РОССИИ ПО ПРИМОРСКОМУ КРАЮ В КАВАЛЕРОВСКОМ МУНИЦИПАЛЬНОМ РАЙОНЕ', '28.05.2013', 'ПРИМОРСКИЙ КРАЙ ПГТ. КАВАЛЕРОВСКИЙ УЛ. АРСЕНЬЕВА ДОМ 87 КВ. 8', 'РУССКАЯ Д. 81 КВ. 66', '', '', '89089689066', '2513', '509805', 'ГИБДД 2507', '11.07.2013.', 0, 5, 9);
+(268, 'ЕВГЕНИЙ', 'СУМЕРИН', 'СЕРГЕЕВИЧ', '19.09.1992', '0511', '946043', 'ОТДЕЛОМ УФМС РОССИИ ПО ПРИМОРСКОМУ КРАЮ В КАВАЛЕРОВСКОМ МУНИЦИПАЛЬНОМ РАЙОНЕ', '28.05.2013', 'ПРИМОРСКИЙ КРАЙ ПГТ. КАВАЛЕРОВСКИЙ УЛ. АРСЕНЬЕВА ДОМ 87 КВ. 8', 'РУССКАЯ Д. 81 КВ. 66', '', '', '89089689066', '2513', '509805', 'ГИБДД 2507', '11.07.2013.', 0, 5, 9),
+(269, 'Новейший1', 'Новейший2', 'Новейший3', '10.05.2018', '3333', '333333', 'чмачм', '23.05.2018', 'вваптр', '', '', '', '555555555555555', 'у444444', '455645', 'вапиатт', '30.05.2018.', 0, 4, 25);
 
 -- --------------------------------------------------------
 
@@ -3033,14 +3038,14 @@ INSERT INTO `clients` (`id`, `first_name`, `last_name`, `middle_name`, `birthday
 -- Структура таблицы `comments`
 --
 
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user` int(11) NOT NULL,
   `client` int(11) NOT NULL,
   `comment` text NOT NULL,
   `mark` int(11) NOT NULL,
   `order` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `comments`
@@ -3197,7 +3202,9 @@ INSERT INTO `comments` (`id`, `user`, `client`, `comment`, `mark`, `order`) VALU
 (163, 8, 16, '', 5, 200),
 (164, 9, 265, '', 5, 192),
 (165, 9, 115, '', 5, 198),
-(166, 9, 267, 'Передача руля, мутный', 1, 195);
+(166, 9, 267, 'Передача руля, мутный', 1, 195),
+(167, 8, 124, '', 5, 127),
+(168, 25, 269, 'Хорошо', 4, 202);
 
 -- --------------------------------------------------------
 
@@ -3205,13 +3212,13 @@ INSERT INTO `comments` (`id`, `user`, `client`, `comment`, `mark`, `order`) VALU
 -- Структура таблицы `imgs`
 --
 
-CREATE TABLE IF NOT EXISTS `imgs` (
+CREATE TABLE `imgs` (
   `id` int(11) NOT NULL,
   `client_tmp_id` varchar(255) NOT NULL,
-  `client_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL DEFAULT '0',
   `url` varchar(500) NOT NULL,
   `user` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=642 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `imgs`
@@ -3548,7 +3555,6 @@ INSERT INTO `imgs` (`id`, `client_tmp_id`, `client_id`, `url`, `user`) VALUES
 (379, 'b1193226dfd0739f63dead78ae91bc292f883170', 161, 'youchCRM-df997b9570e31cd6fb52c48bdd951f2fe066f65b.jpg', 4),
 (380, '18603bd1a7748e372d8a8911f757332558fa4387', 162, 'youchCRM-9b735ef6098244b5e08b5f1f7bd0815a620efc9e.jpg', 4),
 (381, 'a39ac38d056dcee5f75970052422d8f204543d6e', 0, 'youchCRM-1b1e068fe3672c67f55cf1570ba1475301750645.jpg', 4),
-(382, '163', 163, 'youchCRM-58c22a5744eb90123be5bbea92d5bdb6b2f9f762.jpg', 8),
 (383, 'dfeec7ba4c91c6f4a73d0691072ff24d5db5702d', 166, 'youchCRM-e38ab8d0a7ac358de44d9e1d304965fa7abb97c6.jpg', 9),
 (384, 'dfeec7ba4c91c6f4a73d0691072ff24d5db5702d', 166, 'youchCRM-441585b49b9c3c9c9535fd39b43f81ca8773ab26.jpg', 9),
 (387, '0f499cc32c63e105b82b3e538b4ef44eb0e888a7', 168, 'youchCRM-650a5cbae72e91ddc1216425d51729aeb6f55c59.jpg', 9),
@@ -3604,7 +3610,9 @@ INSERT INTO `imgs` (`id`, `client_tmp_id`, `client_id`, `url`, `user`) VALUES
 (638, '185', 185, 'youchCRM-ebedf8c8ddbfe4d0a4562250f7eb7102bff28af8.jpg', 9),
 (639, '115', 115, 'youchCRM-67f1953638f5cea5b25f2124317c2c674efe02d4.jpg', 9),
 (640, '115', 115, 'youchCRM-3b372da7c8bc9e921e9274e4cfe752550133e14c.jpg', 9),
-(641, '115', 115, 'youchCRM-4f802c13c41f49738b750e6bb5f12283d978776e.jpg', 9);
+(641, '115', 115, 'youchCRM-4f802c13c41f49738b750e6bb5f12283d978776e.jpg', 9),
+(646, '163', 163, 'youchCRM-a0c1d6432aa5b1afb8733daf05eadc5140f9e1fc.jpg', 8),
+(647, 'edb244efd36a21d520fdfaf915cef98c5863187f', 269, 'youchCRM-cce09e2a5382b2e479c4bf3c6f9d99efffed7dca.jpg', 25);
 
 -- --------------------------------------------------------
 
@@ -3612,7 +3620,7 @@ INSERT INTO `imgs` (`id`, `client_tmp_id`, `client_id`, `url`, `user`) VALUES
 -- Структура таблицы `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `car` int(11) NOT NULL,
   `client` int(11) NOT NULL,
@@ -3630,7 +3638,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `insurance_deposit` varchar(255) NOT NULL,
   `full_price` varchar(255) NOT NULL,
   `full_price_off` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
@@ -3742,7 +3750,7 @@ INSERT INTO `orders` (`id`, `car`, `client`, `date_from`, `date_till`, `status`,
 (124, 72, 123, '08.11.2017. Время: 09:00', '09.11.2017. Время: 20:00', 0, 5, 'Крылова 10/1', '5000', '', '', '', '', '', '', '', ''),
 (125, 146, 112, '08.11.2017. Время: 13:50', '', 1, 7, 'ул. Жигура 2 б стр.2', '2000', '', '', '', '', '', '', '', ''),
 (126, 67, 69, '10.12.1899. Время: 10:40', '', 0, 5, 'Крылова 10/1', '0', '', '', '', '', '', '', '', ''),
-(127, 25, 124, '11.11.2017. Время: 11:14', '', 1, 8, 'ул. Трамвайная 16', '1300', '', '', '', '', '', '', '', ''),
+(127, 25, 124, '11.11.2017. Время: 11:14', '', 0, 8, 'ул. Трамвайная 16', '1300', '', '', '', '', '', '', '', ''),
 (128, 5, 125, '11.11.2017. Время: 16:14', '', 0, 8, 'ул. Трамвайная 16', '4000', '', '', '', '', '', '', '', ''),
 (129, 155, 118, '13.11.2017. Время: 11:38', '', 0, 8, 'ул. Трамвайная 16', '1600', '', '', '', '', '', '', '', ''),
 (130, 43, 126, '13.11.2017. Время: 13:53', '', 0, 8, 'ул. Трамвайная 16', '1500', '', '', '', '', '', '', '', ''),
@@ -3815,7 +3823,10 @@ INSERT INTO `orders` (`id`, `car`, `client`, `date_from`, `date_till`, `status`,
 (197, 178, 185, '21.03.2018. Время: 15:55', '27.03.2018. Время: 16:00', 1, 9, 'Бородинская 46 корпус 1', '2500', '', '', '', '', '', '', '', ''),
 (198, 107, 115, '26.03.2018. Время: 16:00', '31.03.2018. Время: 16:00', 0, 9, 'Аэропорт ', '3000', '', '', '', '', '', '', '', ''),
 (199, 5, 163, '20.03.2018. Время: 23:40', '26.03.2018. Время: 23:50', 0, 8, 'ул. Трамвайная 16', '', '', '', '', '', '', '', '', ''),
-(200, 139, 16, '05.03.2018. Время: 08:40', '06.03.2018. Время: 05:50', 0, 8, 'ул. Трамвайная 16', '333333', '111111', '25 часов', '29.03.2018. Время: 18:50', 'Место', 'Один, Два, Три', '222222', '444444', '555555');
+(200, 139, 16, '05.03.2018. Время: 08:40', '06.03.2018. Время: 05:50', 0, 8, 'ул. Трамвайная 16', '333333', '111111', '25 часов', '29.03.2018. Время: 18:50', 'Место', 'Один, Два, Три', '222222', '444444', '555555'),
+(201, 181, 163, '29.04.2018. Время: 17:00', '30.04.2018. Время: 12:00', 1, 8, 'г. Владивосток, п. Аякс, о. Русский, кампус ДВФУ, стоянка ГР1 (б)', '3500', '200000', '19 часов', '', '', 'Болотин Иван Андреевич', '', '3000', '3000'),
+(202, 182, 269, '09.05.2018. Время: 15:50', '09.05.2018. Время: 23:00', 0, 25, '', '', '3333', '', '', '', '', '', '', ''),
+(203, 182, 17, '15.05.2018. Время: 09:50', '09.05.2018. Время: 10:50', 1, 26, '', '', '555555', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -3823,52 +3834,56 @@ INSERT INTO `orders` (`id`, `car`, `client`, `date_from`, `date_till`, `status`,
 -- Структура таблицы `url`
 --
 
-CREATE TABLE IF NOT EXISTS `url` (
+CREATE TABLE `url` (
   `id` int(11) NOT NULL,
   `url` varchar(500) NOT NULL,
   `page` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `url`
 --
 
 INSERT INTO `url` (`id`, `url`, `page`) VALUES
-(1, 'login', 'view/login.php'),
-(2, '', 'view/main.php'),
-(3, 'login_user', 'routes/login_user.php'),
-(5, 'logout', 'routes/logout_user.php'),
-(6, 'order/new', 'view/add_order.php'),
-(7, 'clients/add', 'view/add_client.php'),
-(8, 'auto/add', 'view/add_auto.php'),
-(9, 'clients/add', 'view/add_client.php'),
-(11, 'auto/add/getCarMakes', 'routes/get_car_makes.php'),
-(12, 'auto/add/getCarModels', 'routes/get_car_models.php'),
-(13, 'auto/add/addCar', 'routes/add_car.php'),
-(14, 'auto/all', 'view/all_auto.php'),
-(15, 'clients/add/addClient', 'routes/add_client.php'),
-(16, 'clients/all', 'view/all_clients.php'),
-(17, 'clients/all/getCientsList', 'routes/get_clients_list.php'),
-(18, 'auto/all/getAutoList', 'routes/get_auto_list.php'),
-(19, 'order/process', 'routes/process_order.php'),
-(20, 'order/genRentContract', 'routes/gen_rent_contract_pdf.php'),
-(21, 'order/all', 'view/all_orders.php'),
-(22, 'order/return', 'routes/return_order.php'),
-(23, 'order/genRentCheck', 'routes/gen_rent_check_pdf.php'),
-(24, 'order/getOrder', 'routes/get_order.php'),
-(25, 'settings', 'view/settings.php'),
-(26, 'settings/save', 'routes/settings_save.php'),
-(27, 'logout', 'routes/logout_user.php'),
-(28, 'clients/getClient', 'routes/get_client.php'),
-(29, 'clients/getFeedbackUser', 'routes/get_feedback_user.php'),
-(30, 'uploadFile', 'routes/upload_file.php'),
-(31, 'removeFile', 'routes/remove_file.php'),
-(32, 'feedback', 'view/feedback.php'),
-(33, 'feedback/process', 'routes/process_feedback.php'),
-(34, 'clients/edit', 'view/edit_client.php'),
-(35, 'clients/edit/updateClient', 'routes/edit_client.php'),
-(36, 'auto/create', 'view/create_auto.php'),
-(37, 'auto/create/createModel', 'routes/create_car_model.php');
+(1, 'login', 'main/login.php'),
+(2, '', 'main/main.php'),
+(3, 'login_user', 'main/api/login.php'),
+(5, 'logout', 'main/api/logout.php'),
+(6, 'order/new', 'order/add.php'),
+(8, 'auto/add', 'auto/add.php'),
+(9, 'clients/add', 'client/add.php'),
+(11, 'auto/add/getCarMakes', 'car/api/get_makes_list.php'),
+(12, 'auto/add/getCarModels', 'car/api/get_models_list.php'),
+(13, 'auto/add/addCar', 'auto/api/add.php'),
+(14, 'auto/all', 'auto/list.php'),
+(15, 'clients/add/addClient', 'client/api/add.php'),
+(16, 'clients/all', 'client/list.php'),
+(17, 'clients/all/getCientsList', 'client/api/get_list.php'),
+(18, 'auto/all/getAutoList', 'auto/api/get_list.php'),
+(19, 'order/process', 'order/api/create.php'),
+(20, 'order/genRentContract', 'order/contract.php'),
+(21, 'order/all', 'order/list.php'),
+(22, 'order/return', 'order/api/return.php'),
+(24, 'order/getOrder', 'order/api/get.php'),
+(25, 'settings', 'main/settings.php'),
+(26, 'settings/save', 'main/api/settings_save.php'),
+(28, 'clients/getClient', 'client/api/get_single.php'),
+(29, 'clients/getFeedbackUser', 'client/api/get_feedback.php'),
+(30, 'uploadFile', 'file/api/upload.php'),
+(31, 'removeFile', 'file/api/remove.php'),
+(32, 'feedback', 'main/feedback.php'),
+(33, 'feedback/process', 'main/api/feedback_send.php'),
+(34, 'clients/edit', 'client/edit.php'),
+(35, 'clients/edit/updateClient', 'client/api/update.php'),
+(36, 'car/addModel/add', 'car/api/add_model.php'),
+(37, 'car/addModel', 'car/add_model.php'),
+(38, 'admin', 'admin/overview.php'),
+(39, 'admin/company', 'admin/admin/company.php'),
+(40, 'admin/api/branch/add', 'admin/api/add_branch.php'),
+(41, 'admin/company/add', 'admin/admin/add_company.php'),
+(42, 'admin/api/company/add', 'admin/api/add_company.php'),
+(43, 'admin/branch/add', 'admin/company/add_branch.php'),
+(44, 'admin/branch', 'admin/company/branch.php');
 
 -- --------------------------------------------------------
 
@@ -3876,29 +3891,36 @@ INSERT INTO `url` (`id`, `url`, `page`) VALUES
 -- Структура таблицы `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `access` int(11) NOT NULL DEFAULT '5',
-  `rent_place` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22276 DEFAULT CHARSET=utf8;
+  `rent_place` varchar(500) NOT NULL,
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `role` int(1) NOT NULL DEFAULT '3',
+  `head` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `login`, `password`, `access`, `rent_place`) VALUES
-(4, 'Центральный', 'central', '233ec5bda5fa468329234788b4ee61711ea3041e', 5, 'ул. Корабельная набережная, 1'),
-(5, 'ПРЕСТИЖ', 'vgues', 'e64e572068ce30fa004539addcf82afcecf9ba04', 5, 'Крылова 10/1'),
-(6, 'magnit', 'magnit', 'bebdcb0918a9aa123c2b68aefb977ae35e70cc50', 5, 'ул. Всеволода Сибирцева 88 ст2'),
-(7, 'Автопрокат №1', '1prokat', 'cd53ffd6a489a5f466b476599cb7c0d3ad1548b2', 5, 'ул. Жигура 2 б стр.2'),
-(8, 'prim', 'prim', '4b760b581bf0ab4d9e40aae1823be445cca16c17', 5, 'ул. Трамвайная 16'),
-(9, 'Варяг', 'varyag', '98d7640e4509f5a90389c5138e64f78ee343521d', 5, 'ул. Бородинская, 46, корп. 1'),
-(10, 'fantasy', 'fantasy', 'bffdd05fdd51fc2611ee11ac88259d9cc6dd5f88', 5, ''),
-(11, 'cherre', 'cherre', '25f8552071a8978b0447cfd5e1688eaaa5595bcc', 5, ''),
-(22275, 'prokat_n', 'prokat_n', '6fee9ba11fe2a697fa5d605fbe6af0b3b0ea52eb', 5, '');
+INSERT INTO `users` (`id`, `name`, `login`, `password`, `access`, `rent_place`, `email`, `role`, `head`) VALUES
+(4, 'Центральный', 'central', '233ec5bda5fa468329234788b4ee61711ea3041e', 5, 'ул. Корабельная набережная, 1', '', 3, 20),
+(5, 'ПРЕСТИЖ', 'vgues', 'e64e572068ce30fa004539addcf82afcecf9ba04', 5, 'Крылова 10/1', '', 3, 20),
+(6, 'magnit', 'magnit', 'bebdcb0918a9aa123c2b68aefb977ae35e70cc50', 5, 'ул. Всеволода Сибирцева 88 ст2', '', 3, 20),
+(7, 'Автопрокат №1', '1prokat', 'cd53ffd6a489a5f466b476599cb7c0d3ad1548b2', 5, 'ул. Жигура 2 б стр.2', '', 3, 20),
+(8, 'Prim', 'prim', '4b760b581bf0ab4d9e40aae1823be445cca16c17', 5, 'Новый адрес', '', 3, 20),
+(9, 'Варяг', 'varyag', '98d7640e4509f5a90389c5138e64f78ee343521d', 5, 'ул. Бородинская, 46, корп. 1', '', 3, 20),
+(10, 'fantasy', 'fantasy', 'bffdd05fdd51fc2611ee11ac88259d9cc6dd5f88', 5, '', '', 3, 20),
+(11, 'cherre', 'cherre', '25f8552071a8978b0447cfd5e1688eaaa5595bcc', 5, '', '', 3, 20),
+(12, 'Администратор', 'admin', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', '', 1, 0),
+(20, 'ПримАвтоПрокат', 'ivan.rusia@mail.ru', '904f1c4b3db56b8f742f795b23634b8ddf8d3f26', 5, '', 'ivan.rusia@mail.ru', 2, 12),
+(24, 'Тествая компания', 'hibermail@gmail.com', 'ee53f40792759a838afb2c2f7dc901f8d4ea55fb', 5, '', 'hibermail@gmail.com', 2, 12),
+(25, 'Филиал №1', 'dd@g.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'dd@g.ru', 3, 24),
+(26, 'Филиал №2', 'ss@g.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'ss@g.ru', 3, 24);
 
 --
 -- Индексы сохранённых таблиц
@@ -3961,42 +3983,42 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=180;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 --
 -- AUTO_INCREMENT для таблицы `car_models`
 --
 ALTER TABLE `car_models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22276;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22277;
 --
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=269;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 --
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=167;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 --
 -- AUTO_INCREMENT для таблицы `imgs`
 --
 ALTER TABLE `imgs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=642;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=648;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 --
 -- AUTO_INCREMENT для таблицы `url`
 --
 ALTER TABLE `url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22276;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
