@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 29 2018 г., 16:43
+-- Время создания: Май 09 2018 г., 16:36
 -- Версия сервера: 5.7.22-0ubuntu0.16.04.1
 -- Версия PHP: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -56,7 +56,6 @@ INSERT INTO `url` (`id`, `url`, `page`) VALUES
 (20, 'order/genRentContract', 'order/contract.php'),
 (21, 'order/all', 'order/list.php'),
 (22, 'order/return', 'order/api/return.php'),
-(23, 'order/genRentCheck', 'routes/gen_rent_check_pdf.php'),
 (24, 'order/getOrder', 'order/api/get.php'),
 (25, 'settings', 'main/settings.php'),
 (26, 'settings/save', 'main/api/settings_save.php'),
@@ -69,7 +68,14 @@ INSERT INTO `url` (`id`, `url`, `page`) VALUES
 (34, 'clients/edit', 'client/edit.php'),
 (35, 'clients/edit/updateClient', 'client/api/update.php'),
 (36, 'car/addModel/add', 'car/api/add_model.php'),
-(37, 'car/addModel', 'car/add_model.php');
+(37, 'car/addModel', 'car/add_model.php'),
+(38, 'admin', 'admin/overview.php'),
+(39, 'admin/company', 'admin/admin/company.php'),
+(40, 'admin/api/branch/add', 'admin/api/add_branch.php'),
+(41, 'admin/company/add', 'admin/admin/add_company.php'),
+(42, 'admin/api/company/add', 'admin/api/add_company.php'),
+(43, 'admin/branch/add', 'admin/company/add_branch.php'),
+(44, 'admin/branch', 'admin/company/branch.php');
 
 --
 -- Индексы сохранённых таблиц
@@ -89,7 +95,7 @@ ALTER TABLE `url`
 -- AUTO_INCREMENT для таблицы `url`
 --
 ALTER TABLE `url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
