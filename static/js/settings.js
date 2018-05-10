@@ -15,10 +15,10 @@ $(document).ready(function(){
 			$name.closest('.form-group').addClass('has-error');
 			mustReturn = true;
 		}
-		if($rent_place.val() == '' || $rent_place.val().length < 3){
-			$rent_place.closest('.form-group').addClass('has-error');
-			mustReturn = true;
-		}
+		// if($rent_place.val() == '' || $rent_place.val().length < 3){
+		// 	$rent_place.closest('.form-group').addClass('has-error');
+		// 	mustReturn = true;
+		// }
 		if($pass_1.val() != '' && $pass_1.val() != $pass_2.val()){
 			$pass_1.closest('.form-group').addClass('has-error');
 			mustReturn = true;
@@ -52,3 +52,17 @@ $(document).ready(function(){
 	});
 
 });
+
+function companySettingsFormCallbackAfter(data) {
+    console.log(data);
+    data = JSON.parse(data);
+    var $form = $('#companySettingsForm');
+
+    if (data.error === 200) {
+        showAlert($form, 'Изменения сохранены', 'success');
+
+        return;
+    }
+
+    showAlert($form, 'Не удалось сохранить изменения. Свяжитесь с нами по электронной почте <a href="mailto:dev@swat.one">dev@swat.one</a>');
+}

@@ -25,7 +25,7 @@ if ($company_name && $company_email) {
         $status['error'] = 203;
     } else {
         if (
-        $link->query("
+            $link->query("
                 INSERT INTO `users` (
                   `name`, 
                   `login`, 
@@ -48,8 +48,13 @@ if ($company_name && $company_email) {
                 )
             ")
         ) {
-            $status['error'] = 200;
-            $status['companyId'] = $link->insert_id;
+            $company_id = $link->insert_id;
+            if ($link->query("INSERT INTO `companies` (`user`, `name`) VALUES ($company_id, '$company_name')")) {
+                $status['error'] = 200;
+                $status['companyId'] = $company_id;
+            } else {
+                $status['error'] = 204;
+            }
         } else {
             $status['error'] = 202;
         }

@@ -18,21 +18,23 @@ function processPostFields($array){
 $user = $_SESSION['user']['id'];
 $post_fields = processPostFields($_POST);
 
-if($link->query("
+if (
+    $link->query("
 		UPDATE 
 			`users` 
 		SET 
 			name = '". $post_fields['name'] ."',
 			rent_place = '". $post_fields['rent_place'] . "'" .
-    (($post_fields['pass']) ? ", password = SHA1('". $post_fields['pass'] ."')" : "") . "
+            (($post_fields['pass']) ? ", password = SHA1('". $post_fields['pass'] ."')" : "") . "
 		WHERE
 			id = ". $user
-)){
+    )
+) {
     $status['error'] = 200;
     $_SESSION['user']['rent_place'] = $post_fields['rent_place'];
     $_SESSION['user']['name'] = $post_fields['name'];
-}
-else
+} else {
     $status['error'] = 201;
+}
 
 echo json_encode($status);
