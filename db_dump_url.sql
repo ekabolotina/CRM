@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 09 2018 г., 16:36
+-- Время создания: Май 11 2018 г., 09:18
 -- Версия сервера: 5.7.22-0ubuntu0.16.04.1
 -- Версия PHP: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -75,7 +75,8 @@ INSERT INTO `url` (`id`, `url`, `page`) VALUES
 (41, 'admin/company/add', 'admin/admin/add_company.php'),
 (42, 'admin/api/company/add', 'admin/api/add_company.php'),
 (43, 'admin/branch/add', 'admin/company/add_branch.php'),
-(44, 'admin/branch', 'admin/company/branch.php');
+(44, 'admin/branch', 'admin/company/branch.php'),
+(45, 'settings/company/save', 'main/api/settings_company_save.php');
 
 --
 -- Индексы сохранённых таблиц
@@ -95,7 +96,7 @@ ALTER TABLE `url`
 -- AUTO_INCREMENT для таблицы `url`
 --
 ALTER TABLE `url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

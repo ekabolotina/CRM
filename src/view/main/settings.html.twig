@@ -16,9 +16,18 @@
   <h2>Настройки аккаунта</h2><br>
 
   <form class="form-horizontal" role="form" id="settingsForm">
-
     <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Название проката</label>
+      <label for="name" class="col-sm-2 control-label">
+        {% if user.role == roles.branch %}
+          Название проката
+        {% endif %}
+        {% if user.role == roles.company %}
+          Наименование компании
+        {% endif %}
+        {% if user.role == roles.admin %}
+          Имя
+        {% endif %}
+      </label>
       <div class="col-sm-5">
         <input name="name" type="text" class="form-control" placeholder="Название" value="{{ user.name }}">
       </div>
@@ -46,6 +55,96 @@
         <input type="submit" class="btn btn-primary" value="Сохранить">
       </div>
     </div>
-
   </form>
+
+  {% if user.role == roles.company %}
+    <hr>
+    <h2>Информация о компании</h2><br>
+
+    <form action="/settings/company/save" class="ajaxForm form-horizontal" role="form" id="companySettingsForm" callback-after="companySettingsFormCallbackAfter">
+      <div class="form-group">
+        <label for="company_form" class="col-sm-2 control-label">Организационно-правовая форма</label>
+        <div class="col-sm-5">
+          <input name="company_form" type="text" class="form-control" value="{{ company.form }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_name" class="col-sm-2 control-label">Наименование организации</label>
+        <div class="col-sm-5">
+          <input name="company_name" type="text" class="form-control" value="{{ company.name }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_city" class="col-sm-2 control-label">Город</label>
+        <div class="col-sm-5">
+          <input name="company_city" type="text" class="form-control" value="{{ company.city }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_director_name" class="col-sm-2 control-label">ФИО директора</label>
+        <div class="col-sm-5">
+          <input name="company_director_name" type="text" class="form-control" value="{{ company.director_name }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_address" class="col-sm-2 control-label">Юридический адрес</label>
+        <div class="col-sm-5">
+          <input name="company_address" type="text" class="form-control" value="{{ company.address }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_bank_name" class="col-sm-2 control-label">Наименование банка</label>
+        <div class="col-sm-5">
+          <input name="company_bank_name" type="text" class="form-control" value="{{ company.bank_name }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_inn" class="col-sm-2 control-label">ИНН</label>
+        <div class="col-sm-5">
+          <input name="company_inn" type="text" class="form-control" value="{{ company.inn }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_kpp" class="col-sm-2 control-label">КПП</label>
+        <div class="col-sm-5">
+          <input name="company_kpp" type="text" class="form-control" value="{{ company.kpp }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_checking_account" class="col-sm-2 control-label">Р/сч</label>
+        <div class="col-sm-5">
+          <input name="company_checking_account" type="text" class="form-control" value="{{ company.checking_account }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_correspondent_account" class="col-sm-2 control-label">Корр. счет</label>
+        <div class="col-sm-5">
+          <input name="company_correspondent_account" type="text" class="form-control" value="{{ company.correspondent_account }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company_bik" class="col-sm-2 control-label">БИК</label>
+        <div class="col-sm-5">
+          <input name="company_bik" type="text" class="form-control" value="{{ company.bik }}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-5 col-sm-push-2">
+          <input type="submit" class="btn btn-primary" value="Сохранить">
+        </div>
+      </div>
+    </form>
+  {% endif %}
+
 {% endblock content %}

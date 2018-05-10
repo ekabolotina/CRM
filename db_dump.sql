@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 09 2018 г., 16:37
+-- Время создания: Май 11 2018 г., 09:19
 -- Версия сервера: 5.7.22-0ubuntu0.16.04.1
 -- Версия PHP: 7.1.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -209,7 +209,9 @@ INSERT INTO `cars` (`id`, `car_make`, `car_model`, `year`, `car_number`, `user`,
 (179, 99, 2279, 2009, 'А828СК125', 5, 'JTJBM7FXXA5002768', 'Белый'),
 (180, 176, 1841, 1111, 'п555пп444', 8, 'квамвам', 'смсм'),
 (181, 215, 22276, 2018, 'л111лл123', 8, '1111', 'Black'),
-(182, 176, 1793, 2020, 'а555аа555', 26, 'ССС', 'Серый');
+(182, 176, 1793, 2020, 'а555аа555', 26, 'ССС', 'Серый'),
+(183, 113, 1127, 2016, 'я123яя125', 29, 'SS125', 'Black'),
+(184, 113, 1127, 2015, 'ю123юю123', 30, 'аа', 'Зеленый');
 
 -- --------------------------------------------------------
 
@@ -2778,7 +2780,7 @@ CREATE TABLE `clients` (
 INSERT INTO `clients` (`id`, `first_name`, `last_name`, `middle_name`, `birthday`, `passport_prefix`, `passport_number`, `passport_emitted`, `passport_date`, `address_residence`, `address_real`, `phone_home`, `phone_work`, `phone_mobile`, `license_prefix`, `license_number`, `license_emitted`, `license_date`, `blacked`, `rate`, `owner`) VALUES
 (15, 'Василий', 'Пупкин', 'Васильевич', '18.05.1995', '5555', '564564', 'уфмс роыдапды', '18.05.2014', 'паыпаыпыавп', 'ыапыапыавпыа', 'ыапыавпыап', 'ывапывапывапыавп', 'ыапыавпыавп', '5465', '546454', 'прдаыподыа', '24.05.2011.', 0, 0, 4),
 (16, 'Василий', 'Пупкин', 'Владимирович', '18.05.1990', '4545', '456464', 'УФМС по Приморскому краю', '10.06.1999', 'г. Владивосток, ул. Пушкина, 3', 'г. Владивосток, ул. Пушкина, 3', '4242423', '4242422', '4242424', '4565', '123456', 'ГАИ', '06.06.2006.', 0, 5, 5),
-(17, 'Иван', 'Иванов', 'Иванович', '19.08.1995', '5454', '123456', 'УФМС по Приморскому краю', '25.05.2014', 'ул. Кораьельная,7', 'ул. Светланская, 6', '777777', '57946513', '79999999999', '1563', '154687', 'ГАИ', '24.05.2016.', 1, 4, 4),
+(17, 'Иван', 'Иванов', 'Иванович', '19.08.1995', '5454', '123456', 'УФМС по Приморскому краю', '25.05.2014', 'ул. Кораьельная,7', 'ул. Светланская, 6', '777777', '57946513', '79999999999', '1563', '154687', 'ГАИ', '24.05.2016.', 1, 3, 4),
 (18, 'Алекс', 'Кимff', 'Борисович', '31.05.1990', '4545', '4561231', 'sdkjbgrkbndjb', '02.05.1996', 'паыпаыпыавп', 'ыпыапып', '7545', '45643', '1234564', '4545', '456456', 'ГАИ', '11.05.2006', 0, 0, 4),
 (19, 'Максим', 'Зарубин', 'Анатольевич', '24.07.1989', '510', '753944', 'ОУФМС России по Приморскому краю в Ленинском районе гор.Владивостока', '07.07.2010', 'г. Владивосток ул. Тунгусская 63 кв.915', 'г. Владивосток ул. Тухачевского 44 кв.17', '2224333', '', '89149628198', '2527', '463027', 'ГИБДД 2501', '11.08.2016.', 0, 5, 6),
 (20, 'Денис', 'Зюльганов', 'Валерьевич', '02.06.2017', '0506', '299238', 'УВД ленинского района гор.Владивостока', '24.01.2007', 'г. Владивосток ул. Тунгусская 65 кв. 91', 'г. Владивосток ул. Тунгусская 63 кв. 713', '', '', '89143330639', '2531', '211765', 'ГИБДД 2501', '01.06.2017.', 0, 5, 6),
@@ -3204,7 +3206,39 @@ INSERT INTO `comments` (`id`, `user`, `client`, `comment`, `mark`, `order`) VALU
 (165, 9, 115, '', 5, 198),
 (166, 9, 267, 'Передача руля, мутный', 1, 195),
 (167, 8, 124, '', 5, 127),
-(168, 25, 269, 'Хорошо', 4, 202);
+(168, 25, 269, 'Хорошо', 4, 202),
+(169, 30, 17, 'Плохо', 2, 205);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `city` varchar(255) NOT NULL DEFAULT '',
+  `director_name` varchar(255) NOT NULL DEFAULT '',
+  `address` varchar(255) NOT NULL DEFAULT '',
+  `bank_name` varchar(255) NOT NULL DEFAULT '',
+  `inn` varchar(255) NOT NULL DEFAULT '',
+  `kpp` varchar(255) NOT NULL DEFAULT '',
+  `checking_account` varchar(255) NOT NULL DEFAULT '',
+  `correspondent_account` varchar(255) NOT NULL DEFAULT '',
+  `bik` varchar(255) NOT NULL DEFAULT '',
+  `form` varchar(300) NOT NULL DEFAULT '',
+  `name` varchar(300) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `companies`
+--
+
+INSERT INTO `companies` (`id`, `user`, `city`, `director_name`, `address`, `bank_name`, `inn`, `kpp`, `checking_account`, `correspondent_account`, `bik`, `form`, `name`) VALUES
+(1, 20, '', '', '', '', '', '', '', '', '', '', ''),
+(2, 24, 'Владикавказ', 'Сурков Иван Григорьевич', 'г. Владикавказ, ул. Бестужева, 5б', 'Отделение №57588 Южного филиала Сбербанка России', '5516665816', '1613316456', '49856458539645029348689', '34859845736423423677754', '4573775', 'Публичное акционерное общество', 'Тестовая компания'),
+(3, 29, 'г. Уссурийск', 'Болотин Иван Андреевич', 'г. Уссурийск, ул. Некрасова, 55', 'Росбанк', '6849943', '5774899', '567876543948585493299', '000000000000099998888', '747674', 'ОАО', 'ДальПрокат');
 
 -- --------------------------------------------------------
 
@@ -3826,7 +3860,9 @@ INSERT INTO `orders` (`id`, `car`, `client`, `date_from`, `date_till`, `status`,
 (200, 139, 16, '05.03.2018. Время: 08:40', '06.03.2018. Время: 05:50', 0, 8, 'ул. Трамвайная 16', '333333', '111111', '25 часов', '29.03.2018. Время: 18:50', 'Место', 'Один, Два, Три', '222222', '444444', '555555'),
 (201, 181, 163, '29.04.2018. Время: 17:00', '30.04.2018. Время: 12:00', 1, 8, 'г. Владивосток, п. Аякс, о. Русский, кампус ДВФУ, стоянка ГР1 (б)', '3500', '200000', '19 часов', '', '', 'Болотин Иван Андреевич', '', '3000', '3000'),
 (202, 182, 269, '09.05.2018. Время: 15:50', '09.05.2018. Время: 23:00', 0, 25, '', '', '3333', '', '', '', '', '', '', ''),
-(203, 182, 17, '15.05.2018. Время: 09:50', '09.05.2018. Время: 10:50', 1, 26, '', '', '555555', '', '', '', '', '', '', '');
+(203, 182, 17, '15.05.2018. Время: 09:50', '09.05.2018. Время: 10:50', 1, 26, '', '', '555555', '', '', '', '', '', '', ''),
+(204, 183, 129, '10.05.2018. Время: 23:50', '11.05.2018. Время: 23:50', 1, 29, '', '', '3333', '', '', '', '', '', '', ''),
+(205, 184, 17, '10.05.2018. Время: 23:38', '10.05.2018. Время: 23:38', 0, 30, '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -3883,7 +3919,8 @@ INSERT INTO `url` (`id`, `url`, `page`) VALUES
 (41, 'admin/company/add', 'admin/admin/add_company.php'),
 (42, 'admin/api/company/add', 'admin/api/add_company.php'),
 (43, 'admin/branch/add', 'admin/company/add_branch.php'),
-(44, 'admin/branch', 'admin/company/branch.php');
+(44, 'admin/branch', 'admin/company/branch.php'),
+(45, 'settings/company/save', 'main/api/settings_company_save.php');
 
 -- --------------------------------------------------------
 
@@ -3918,9 +3955,11 @@ INSERT INTO `users` (`id`, `name`, `login`, `password`, `access`, `rent_place`, 
 (11, 'cherre', 'cherre', '25f8552071a8978b0447cfd5e1688eaaa5595bcc', 5, '', '', 3, 20),
 (12, 'Администратор', 'admin', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', '', 1, 0),
 (20, 'ПримАвтоПрокат', 'ivan.rusia@mail.ru', '904f1c4b3db56b8f742f795b23634b8ddf8d3f26', 5, '', 'ivan.rusia@mail.ru', 2, 12),
-(24, 'Тествая компания', 'hibermail@gmail.com', 'ee53f40792759a838afb2c2f7dc901f8d4ea55fb', 5, '', 'hibermail@gmail.com', 2, 12),
+(24, 'Тестовая компания', 'hibermail@gmail.com1', 'ee53f40792759a838afb2c2f7dc901f8d4ea55fb', 5, '', 'hibermail@gmail.com1', 2, 12),
 (25, 'Филиал №1', 'dd@g.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'dd@g.ru', 3, 24),
-(26, 'Филиал №2', 'ss@g.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'ss@g.ru', 3, 24);
+(26, 'Филиал №2', 'ss@g.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'ss@g.ru', 3, 24),
+(29, 'ДальПрокат', 'hibermail@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'hibermail@gmail.com', 2, 12),
+(30, 'Новый прокат', 'q@q.ru', '7c222fb2927d828af22f592134e8932480637c0d', 5, '', 'q@q.ru', 3, 29);
 
 --
 -- Индексы сохранённых таблиц
@@ -3949,6 +3988,12 @@ ALTER TABLE `clients`
 -- Индексы таблицы `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `companies`
+--
+ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3983,7 +4028,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 --
 -- AUTO_INCREMENT для таблицы `car_models`
 --
@@ -3998,7 +4043,12 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+--
+-- AUTO_INCREMENT для таблицы `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `imgs`
 --
@@ -4008,17 +4058,17 @@ ALTER TABLE `imgs`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 --
 -- AUTO_INCREMENT для таблицы `url`
 --
 ALTER TABLE `url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

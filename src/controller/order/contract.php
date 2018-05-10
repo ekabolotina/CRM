@@ -14,6 +14,8 @@ $order_type = $order_type == 1 ? 1 : 0;
 $user_id = $_SESSION['user']['id'];
 $user_role = $_SESSION['user']['role'];
 
+$order_real_owner = $user_role == constant('ROLE_BRANCH') ? "u.head" : "ord.owner";
+
 if(
     $order_id &&
     ($query = $link->query("
@@ -50,14 +52,26 @@ if(
             ord.people_allowed AS `people_allowed`,
             ord.insurance_deposit AS `insurance_deposit`,
             ord.full_price AS `full_price`,
-            ord.full_price_off AS `full_price_off`
+            ord.full_price_off AS `full_price_off`,
+            comp.city AS `company_city`, 
+            comp.director_name AS `company_director_name`, 
+            comp.address AS `company_address`, 
+            comp.bank_name AS `company_bank_name`, 
+            comp.inn AS `company_inn`, 
+            comp.kpp AS `company_kpp`, 
+            comp.checking_account AS `company_checking_account`, 
+            comp.correspondent_account AS `company_correspondent_account`, 
+            comp.bik AS `company_bik`,
+            comp.form AS `company_form`,
+            comp.name AS `company_name`
 		FROM 
 			`orders` AS ord
 		INNER JOIN `cars` AS c ON ord.car = c.id
 		INNER JOIN `car_makes` AS c_makes ON c.car_make = c_makes.id
 		INNER JOIN `car_models` AS c_models ON c.car_model = c_models.id
 		INNER JOIN `clients` AS cl ON ord.client = cl.id
-		LEFT JOIN `users` as u ON ord.owner = u.id
+		LEFT JOIN `users` AS u ON ord.owner = u.id
+		INNER JOIN `companies` AS comp ON $order_real_owner = comp.user
 		WHERE 
 			ord.id = $order_id AND
 			(
